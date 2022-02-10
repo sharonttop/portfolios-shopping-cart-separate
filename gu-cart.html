@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .nav{
+        /* border-bottom: 1px solid gray; */
+        box-shadow: 0px 3px 9px -6px #9b9b9b;
+
+    }
+    p{
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+    a{
+        color: black;
+    }
+    a:hover {
+        text-decoration: none;
+        color: black;
+    }
+    .c-img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .logo{
+        width: 50px;
+        height:50px;
+    }
+    .category>a>p{
+        font-weight: 500;
+        font-size:1.1rem;
+        margin:12px;
+    }
+
+    .gguJzI {
+    height: 30px;
+    /* width: calc(100% - 0px); */
+    border: none;
+    border-bottom: .8px solid rgb(187, 185, 185);
+    padding-right: 80px;
+    padding-left: 10px;
+    font-size: .9rem;
+    margin:10px;
+    }
+    .mobile-search-bar{
+        display:none;
+    }
+    @media (max-width: 576px) { 
+        .logo{
+        margin-left: auto;
+        margin-right: auto;
+        width: 40px;
+        height:40px;
+        }
+        .search-bar{
+            display:none;
+        }
+        .mobile-search-bar{
+        display:flex;
+        }
+        .category{
+        margin-left: auto;
+        margin-right: auto;
+        }
+        .nav-right{
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+    }
+    .icon-p{
+        font-size: .7rem;
+    }
+    .member>img{
+        width:30px;
+        height:30px;
+    }
+    .like>img{
+        width:30px;
+        height:30px;
+    }
+    /* 加入最愛 */
+    .like{
+        position: relative;
+    }
+
+    .like-count{
+        top: -4px;
+        right: 0;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        background-color: red;
+        border-radius: 8px;
+    }
+
+    .full-like-count{
+        color: white;
+        font-size: 8px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-Items: center;
+    }
+     /* 加入購物車 */
+    .shopping-cart{
+        position: relative;
+    }
+    .cart-count{
+        top: -4px;
+        right: -7px;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        background-color: red;
+        border-radius: 8px;
+        
+    }
+    .icon-count{
+        color: white;
+        font-size: 8px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-Items: center;
+    }
+    /* 商品 */
+    .product-img{
+        position: relative;
+    }
+    .like-hart{
+        cursor: pointer;
+        right: 6px;
+        top:3px;
+        position: absolute;
+        width: 15%;
+    }
+
+    .new-tag{
+        padding:0 5px;
+        font-size:0.9rem;
+        color:#12288b;
+        border:1px #12288b solid;
+        width:fit-content;
+    }
+    .gender{
+        font-size: .9rem;
+        color: rgb(90, 90, 90);
+    }
+    .product-list{
+        margin-left: 8%;
+        margin-right: 8%;
+        margin-top: 3%;
+    }
+    #product-name{
+        font-size: .9rem;
+        /* overflow:hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap; */
+
+    }
+    .p-total,
+    .p-price,
+    .price-tag{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .add-to-cart{
+        /* width: 90%; */
+    background-color: rgb(18, 40, 138);
+    color: white;
+    font-size: .8rem;
+    font-weight: 500;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    }
+    .add-to-cart:hover{
+        color: white;
+        opacity: 0.85;
+    }
+    /* 購物車 */
+    .cart{
+        margin-left: 8%;
+        margin-right: 8%;
+        margin-top: 3%;
+    }
+    .title{
+        font-size:2rem;
+        font-weight: 500;
+    }
+    .buy{
+        display:flex;
+        background-color: red;
+        color: white;
+        align-items: center;
+        justify-content:center;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    .buy-other{
+        display:flex;
+        border: solid .7px black;
+        align-items: center;
+        justify-content:center;
+        height: 50px;
+    }
+    .delete{
+        cursor: pointer;
+    }
+    .delete:hover{
+        opacity: 0.7;
+        text-decoration:underline;
+    }
+
+</style>
+<body>
+    <div class="nav d-flex justify-content-between px-5 pt-2">
+        <div class="logo"><img src="./imgs/logo-gu.svg" alt="" class="c-img">
+        </div>
+
+        <div class="category d-flex justify-content-between">
+            
+            <a href="#"><p>WOMEN</p></a>
+            <a href="#"><p>MEN</p></a>
+            <a href="#"><p>KIDS．BABY</p></a>
+            
+        </div>
+        <div class="search-bar"><input type="search" value="" placeholder="キーワードで検索" aria-label="キーワードで検索" class="gguJzI"></div>
+
+        <!-- <div class="mobile-search-bar">
+            <svg width="24" height="24" viewBox="0 0 1024 1024" style="display: inline; fill: rgb(27, 27, 27);">
+                <path
+                    d="M444.59,888.76c-113.78,0-227.57-43.31-314.2-129.94C46.47,674.9.24,563.31,0.24,444.62s46.23-230.28,130.15-314.2c173.26-173.29,455.17-173.24,628.41,0C842.73,214.34,889,325.93,889,444.62S842.73,674.9,758.8,758.82h0C672.18,845.44,558.38,888.76,444.59,888.76Zm0-815.26A371.18,371.18,0,0,0,182,707.17c144.79,144.76,380.33,144.79,525.11,0h0A371.12,371.12,0,0,0,444.59,73.5Z">
+                </path>
+                <path
+                    d="M987.72,1024.27a36.41,36.41,0,0,1-25.82-10.7L707.16,758.82a36.52,36.52,0,1,1,51.65-51.65l254.74,254.75A36.52,36.52,0,0,1,987.72,1024.27Z">
+                </path>
+            </svg>
+        </div> -->
+
+        <div class="nav-right d-flex">
+            <!-- text-align的特性為：可以置中(裡面的)元件，不能置中(自己本身的)版面。 -->
+
+            <a href="#">
+                <div class="store-locator text-center mr-3">
+                    <img src="./imgs/ic-store-locator.svg" alt="">
+                    <p class="icon-p">店舗検索</p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="member text-center mr-3">
+                    <img src="./imgs/ic-membership.svg" alt="" >
+                    <p class="icon-p">ログイン</p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="like text-center mr-3">
+                    <img src="./imgs/ic-like.svg" alt="">
+                    <p class="icon-p">お気に入り</p>
+                    <div id='like-count' class="">
+                        <span id='full-like-count' class=""></span>
+                    </div>
+                </div>
+            </a>
+            <a href="#">
+                <div class="shopping-cart text-center mr-3">
+                    <img src="./imgs/ic-cart.svg" alt="">
+                    <p class="icon-p">カート</p>
+                    <div id='cart-count' class="">
+                        <span id='icon-count' class = ""></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="product-list d-flex flex-wrap">
+        <!-- <div class="product col-md">
+            <a href="#" class="">
+                <div class="product-img">
+                    <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img01">
+                </div>
+                <p>WOMEN</p>
+                <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>
+                <p>新作</p>
+                <p>¥2,490</p>
+            </a>
+            <div class="add-to-cart btn">カートに入れる</div>
+        </div>
+        <div class="product col-md">
+            <a href="#" class="">
+                <div class="product-img">
+                    <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img02">
+                </div>
+                <p>WOMEN</p>
+                <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>
+                <p>新作</p>
+                <p>¥2,490</p>
+            </a>
+            <div class="add-to-cart btn">カートに入れる</div>
+        </div>
+        <div class="product col-md">
+            <a href="#" class="">
+                <div class="product-img">
+                    <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img03">
+                </div>
+                <p>WOMEN</p>
+                <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>
+                <p>新作</p>
+                <p>¥2,490</p>
+            </a>
+            <div class="add-to-cart btn">カートに入れる</div>
+        </div>
+        <div class="product col-md">
+            <a href="#" class="">
+                <div class="product-img">
+                    <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img04">
+                </div>
+                <p>WOMEN</p>
+                <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>
+                <p>新作</p>
+                <p>¥2,490</p>
+            </a>
+            <div class="add-to-cart btn">カートに入れる</div>
+        </div>
+        <div class="product col-md">
+            <a href="#" class="">
+                <div class="product-img">
+                    <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img01">
+                </div>
+                <p>WOMEN</p>
+                <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>
+                <p>新作</p>
+                <p>¥2,490</p>
+            </a>
+            <div class="add-to-cart btn">カートに入れる</div>
+        </div> -->
+    </div>
+    <div class="cart">
+        <div class="cart-text-box ml-3">
+            <div class="title">カート</div>
+            <!-- <p>あと¥2,310以上のお買い物で送料が無料になります。</p> -->
+            <p>ORDER & PICKについて</p>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="oder-bar col-md-7 col-xs-12">
+                <!-- <div class="order d-flex mb-4">
+                    <div class="product-img col-5 mr-2">
+                        <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img01">
+                    </div>
+                    <div class="oder-detail col-7">
+                        <div class="p-name"></div>
+                        <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>                        
+                        <p class="p-price">¥2490</p>
+                        <p class="delete first">削除</p>
+                    </div>
+                </div>
+                <div class="order d-flex mb-4">
+                    <div class="product-img col-5 mr-2">
+                        <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img01">
+                    </div>
+                    <div class="oder-detail col-7">
+                        <div class="p-name"></div>
+                        <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>                        
+                        <p class="p-price">¥2790</p>
+                        <p class="delete two">削除</p>
+                    </div>
+                </div>
+                <div class="order d-flex mb-4">
+                    <div class="product-img col-5 mr-2">
+                        <img src="./imgs/goods_01_339813.jpg" alt="" class="c-img" id="img01">
+                    </div>
+                    <div class="oder-detail col-7">
+                        <div class="p-name"></div>
+                        <p id="product-name">フリルカラーチュニックブラウス(長袖)</p>                        
+                        <p class="p-price">¥2790</p>
+                        <p class="delete two">削除</p>
+                    </div>
+                </div> -->
+            </div>
+            <div class="cart-bar col-md-5 col-xs-12">
+            
+                <div class="d-flex justify-content-between">
+                    <p>注文内容</p>
+                    <div class="count">0件</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>商品合計</p>
+                    <div class="p-total">¥0</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>送料</p>
+                    <div class="delivery-fee">¥0</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>合計</p>
+                    <div class="allTotal">¥0</div>
+                </div>
+                <a href="#"><div class="buy">購入手続きへ</div></a>
+                <a href="#"><div class="buy-other">お買い物を続ける</div></a>
+            </div>
+        </div>
+    </div>
+    <script>
+            let i;
+            let AllProduct='';
+            let productName = document.querySelector('#product-name');
+            // let product = document.querySelectorAll('.product')
+        
+            let productList = document.querySelector('.product-list')
+            // console.log(productName);
+            
+
+            const productData = fetch('./data/products.json').then(response => {
+            return response.json();
+            }).then(products => {
+                // console.log(products);
+                // console.log(data[0].image);
+                for( i=0; i< products.length; i++){
+                    AllProduct += 
+                    `
+                    <div class="product col-md">
+                        <div class="">
+                                <div class="product-img">
+                                    <img src="${products[i].image}" alt="" class="c-img" id="img04">
+                                    <div class="like-hart">
+                                        <img src="./imgs/ic-like.svg" alt="" class="c-img" id="img04">
+                                    </div>
+                                </div>
+                            <p class='gender'>WOMEN</p>
+                                <p id="product-name">${products[i].product}</p>
+                            <p class="new-tag">新作</p>
+                            <p class="price-tag">¥${products[i].price}</p>
+                        </div>
+                        <div class="add-to-cart btn">カートに入れる</div>
+                    </div>
+                    `
+                    // console.log(AllProduct);
+                    productList.innerHTML = AllProduct
+
+
+                }
+                //加入購物車
+                let addToCart = document.querySelectorAll('.add-to-cart')
+                // console.log(addToCart)
+
+                for(i=0; i < addToCart.length ; i++) {
+                    // console.log(i)
+                    // console.log(addToCart[i])
+                    // console.log(products[i].product);
+
+
+                    addToCart[i].addEventListener('click', function(e) {
+
+                        let productName = e.target.parentNode.children[0].children[2].innerText
+
+                        let productPrice = e.target.parentNode.children[0].children[4].innerText
+
+                        let productImg = e.target.parentNode.children[0].children[0].children[0].src
+
+                        // console.log(e.target.parentNode.children[0].children[0].children[0].src)
+
+
+                        // let productName = document.querySelectorAll('#product-name')
+                        // console.log(productName)
+                        //  console.log(products[0]);
+                        addItemToCart(productName, productPrice, productImg);
+                    })
+
+                }
+
+                // 加入我的最愛
+                let countLike = 0;
+                let likeHart = document.querySelectorAll('.like-hart')
+                for (i = 0; i < addToCart.length; i++) {
+                    let allLike = likeHart[i]
+
+                    // console.log(countLike)
+                    productsLike(allLike, countLike);
+                }
+                
+            }).catch(err => {
+                // Do something for an error here
+                console.log(error);
+                
+            });
+
+            // let deleteBtn = document.querySelectorAll('.delete');
+            // console.log(deleteBtn)
+            function addItemToCart(productName, productPrice, productImg){
+                // console.log(productName , productPrice)
+                let cartRow = document.createElement('div');
+                cartRow.classList.add('order','d-flex','mb-4')
+                let cartItem = document.querySelector('.oder-bar')
+                let cartItemName = cartItem.querySelectorAll('#product-name')
+                // console.log(cartItemName)
+                for(let i = 0; i < cartItemName.length;i++){
+                    console.log(cartItemName[i].innerText)
+                    if(cartItemName[i].innerText == productName){
+                        // console.log('cartItemName', cartItemName[i].innerText)
+                        console.log('productName', productName)
+                        alert('商品已加入購物車');
+                        return
+                    }
+                }
+
+
+                let cartRowContents = 
+                `
+                    <div class="product-img col-5 mr-2">
+                        <img src="${productImg}" alt="" class="c-img" id="img01">
+                    </div>
+                    <div class="oder-detail col-7">
+                        <div class="p-name"></div>
+                        <p id="product-name">${productName}</p>
+                        <p class="new-tag">新作</p>
+                        <p class="p-price">${productPrice}</p>
+                        <p class="delete two">削除</p>
+                    </div>
+                `
+                cartRow.innerHTML = cartRowContents
+                cartItem.append(cartRow)
+                let deleteBtn = document.querySelectorAll('.delete');
+                // console.log(deleteBtn)
+                for (let i = 0; i < deleteBtn.length; i++) {
+                    let deleteAllBtn = deleteBtn[i]
+                    // console.log(deleteAllBtn);
+                    deleteAllBtn.addEventListener('click', removeCartItem)
+                }
+                
+
+                totalCounter()
+
+            }
+
+            let counterHart = 0;
+
+
+            function productsLike(allLike, countLike){
+                // console.log('out',allLike)
+                
+                allLike.addEventListener('click', function(e){
+
+                    let Like = './imgs/ic-like-full.svg'
+                    let unLike = './imgs/ic-like.svg'
+                    let likeCount = document.querySelector('#like-count');
+                    let fullLikeCount = document.querySelector('#full-like-count');
+
+
+                    
+
+                    if(e.target.src.indexOf('ic-like-full.svg') === -1){
+                        likeCount.classList.add('like-count');
+                        fullLikeCount.classList.add('full-like-count');
+                        e.target.src = Like
+                        counterHart++;
+                        // console.log(counterHart)
+                        fullLikeCount.innerHTML = counterHart;
+
+
+                    }else{
+
+                        e.target.src = unLike
+                        counterHart--;
+                        // console.log(counterHart)
+                        fullLikeCount.innerHTML = counterHart;
+                        if(counterHart === 0){
+                            likeCount.classList.remove('like-count');
+                            fullLikeCount.classList.remove('full-like-count');
+                            fullLikeCount.innerHTML = '';
+
+                        }
+
+
+                    }
+
+                })
+
+
+            }
+
+
+            
+
+    </script>
+    <script type="text/javascript" src="./server.js"></script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
