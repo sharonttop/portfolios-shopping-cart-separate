@@ -57,7 +57,6 @@
         }
         
     }).catch(err => {
-        // Do something for an error here
         console.log(error);
         
     });
@@ -71,7 +70,6 @@
         for(let i = 0; i < cartItemName.length;i++){
             console.log(cartItemName[i].innerText)
             if(cartItemName[i].innerText == productName){
-                // console.log('cartItemName', cartItemName[i].innerText)
                 console.log('productName', productName)
                 alert('商品已加入購物車');
                 return
