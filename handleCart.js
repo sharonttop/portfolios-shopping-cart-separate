@@ -1,9 +1,7 @@
 
     let i;
     let AllProduct='';
-    let productName = document.querySelector('#product-name');
-
-    let productList = document.querySelector('.product-list')
+    let productList = document.querySelector('.product-list');
     
 
     const productData = fetch('./data/products.json').then(response => {
@@ -160,11 +158,11 @@ function totalCounter(){
 
     let price = document.querySelectorAll('.p-price');
 
-    let allTotalA = 0;
+    let total = 0;
 
     for(let k = 0; k < price.length; k++){
         let allPrice = price[k].innerText.replace('¥','');
-        allTotalA += Number(allPrice);
+        total += Number(allPrice);
 
     }
 
@@ -190,10 +188,10 @@ function totalCounter(){
     deliveryFee.innerHTML = (order.length > 0) ? '¥'+ 600 : '¥'+0
 
     let priceTotal = document.querySelector('.p-total')
-    priceTotal.innerHTML = '¥' + allTotalA
+    priceTotal.innerHTML = '¥' + total
 
 
-    allTotal.innerHTML = '¥' + (Number(order.length > 0 ? 600 : 0) + allTotalA)
+    allTotal.innerHTML = '¥' + (Number(order.length > 0 ? 600 : 0) + total)
 
 
 }
