@@ -13,19 +13,21 @@
             AllProduct += 
             `
             <div class="product col-md">
-                <div class="">
-                        <div class="product-img">
-                            <img src="${products[i].image}" alt="" class="c-img" id="img04">
-                            <div class="like-hart">
-                                <img src="./imgs/ic-like.svg" alt="" class="c-img" id="img04">
-                            </div>
+                <div>
+                    <div class="product-img">
+                        <img src="${products[i].image}" alt="" class="c-img" id="img04">
+                        <div class="like-hart">
+                            <img src="./imgs/ic-like.svg" alt="" class="c-img" id="img04">
                         </div>
+                    </div>
                     <p class='gender'>WOMEN</p>
-                        <p id="product-name">${products[i].product}</p>
+                    <p id="product-name">${products[i].product}</p>
+                </div>
+                <div>
                     <p class="new-tag">新作</p>
                     <p class="price-tag">¥${products[i].price}</p>
+                    <div class="add-to-cart btn">カートに入れる</div>
                 </div>
-                <div class="add-to-cart btn">カートに入れる</div>
             </div>
             `
             productList.innerHTML = AllProduct
@@ -39,11 +41,11 @@
 
             addToCart[i].addEventListener('click', function(e) {
 
-                let productName = e.target.parentNode.children[0].children[2].innerText
+                let productName = e.target.parentNode.parentNode.children[0].children[2].innerText
 
-                let productPrice = e.target.parentNode.children[0].children[4].innerText
+                let productPrice = e.target.parentNode.children[1].innerText
 
-                let productImg = e.target.parentNode.children[0].children[0].children[0].src
+                let productImg = e.target.parentNode.parentNode.children[0].children[0].children[0].src
                 addItemToCart(productName, productPrice, productImg);
             })
 
@@ -68,9 +70,8 @@
         let cartItemName = cartItem.querySelectorAll('#product-name')
 
         for(let i = 0; i < cartItemName.length;i++){
-            console.log(cartItemName[i].innerText)
             if(cartItemName[i].innerText == productName){
-                console.log('productName', productName)
+                // console.log('productName', productName)
                 alert('商品已加入購物車');
                 return
             }
