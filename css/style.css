@@ -1,0 +1,221 @@
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .nav{
+        /* border-bottom: 1px solid gray; */
+        box-shadow: 0px 3px 9px -6px #9b9b9b;
+
+    }
+    p{
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+    a{
+        color: black;
+    }
+    a:hover {
+        text-decoration: none;
+        color: black;
+    }
+    .c-img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .logo{
+        width: 50px;
+        height:50px;
+    }
+    .category>a>p{
+        font-weight: 500;
+        font-size:1.1rem;
+        margin:12px;
+    }
+    .product{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .gguJzI {
+    height: 30px;
+    /* width: calc(100% - 0px); */
+    border: none;
+    border-bottom: .8px solid rgb(187, 185, 185);
+    padding-right: 80px;
+    padding-left: 10px;
+    font-size: .9rem;
+    margin:10px;
+    }
+    .mobile-search-bar{
+        display:none;
+    }
+    @media (max-width: 576px) { 
+        .logo{
+        margin-left: auto;
+        margin-right: auto;
+        width: 40px;
+        height:40px;
+        }
+        .search-bar{
+            display:none;
+        }
+        .mobile-search-bar{
+        display:flex;
+        }
+        .category{
+        margin-left: auto;
+        margin-right: auto;
+        }
+        .nav-right{
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+    }
+    .icon-p{
+        font-size: .7rem;
+    }
+    .member>img{
+        width:30px;
+        height:30px;
+    }
+    .like>img{
+        width:30px;
+        height:30px;
+    }
+    /* 加入最愛 */
+    .like{
+        position: relative;
+    }
+
+    .like-count{
+        top: -4px;
+        right: 0;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        background-color: red;
+        border-radius: 8px;
+    }
+
+    .full-like-count{
+        color: white;
+        font-size: 8px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-Items: center;
+    }
+     /* 加入購物車 */
+    .shopping-cart{
+        position: relative;
+    }
+    .cart-count{
+        top: -4px;
+        right: -7px;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        background-color: red;
+        border-radius: 8px;
+        
+    }
+    .icon-count{
+        color: white;
+        font-size: 8px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-Items: center;
+    }
+    /* 商品 */
+    .product-img{
+        position: relative;
+    }
+    .like-hart{
+        cursor: pointer;
+        right: 6px;
+        top:3px;
+        position: absolute;
+        width: 15%;
+    }
+
+    .new-tag{
+        padding:0 5px;
+        font-size:0.9rem;
+        color:#12288b;
+        border:1px #12288b solid;
+        width:fit-content;
+    }
+    .gender{
+        font-size: .9rem;
+        color: rgb(90, 90, 90);
+    }
+    .product-list{
+        margin-left: 8%;
+        margin-right: 8%;
+        margin-top: 3%;
+    }
+    #product-name{
+        font-size: .9rem;
+        /* overflow:hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap; */
+
+    }
+    .p-total,
+    .p-price,
+    .price-tag{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .add-to-cart{
+        /* width: 90%; */
+    background-color: rgb(18, 40, 138);
+    color: white;
+    font-size: .8rem;
+    font-weight: 500;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    }
+    .add-to-cart:hover{
+        color: white;
+        opacity: 0.85;
+    }
+    /* 購物車 */
+    .cart{
+        margin-left: 8%;
+        margin-right: 8%;
+        margin-top: 3%;
+    }
+    .title{
+        font-size:2rem;
+        font-weight: 500;
+    }
+    .buy{
+        display:flex;
+        background-color: red;
+        color: white;
+        align-items: center;
+        justify-content:center;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    .buy-other{
+        display:flex;
+        border: solid .7px black;
+        align-items: center;
+        justify-content:center;
+        height: 50px;
+    }
+    .deleteCartItem{
+        /* 改命名 */
+        cursor: pointer;
+    }
+    .deleteCartItem:hover{
+        opacity: 0.7;
+        text-decoration:underline;
+    }

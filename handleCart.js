@@ -13,9 +13,9 @@
             <div class="product col-md">
                 <div>
                     <div class="product-img">
-                        <img src="${products[i].image}" alt="" class="c-img" id="img04">
+                        <img src="${products[i].image}" alt="" class="c-img" id="p-img">
                         <div class="like-hart">
-                            <img src="./imgs/ic-like.svg" alt="" class="c-img" id="img04">
+                            <img src="./imgs/ic-like.svg" alt="" class="c-img" id="hart-img">
                         </div>
                     </div>
                     <p class='gender'>WOMEN</p>
@@ -38,13 +38,12 @@
         for(i=0; i < addToCart.length ; i++) {
 
             addToCart[i].addEventListener('click', function(e) {
+              let addProduct = e.target.parentNode;
 
-                let productName = e.target.parentNode.parentNode.children[0].children[2].innerText
-
-                let productPrice = e.target.parentNode.children[1].innerText
-
-                let productImg = e.target.parentNode.parentNode.children[0].children[0].children[0].src
-                addItemToCart(productName, productPrice, productImg);
+                let productName = addProduct.parentNode.children[0].children[2].innerText;
+                let productPrice = addProduct.children[1].innerText;
+                let productImg = addProduct.parentNode.children[0].children[0].children[0].src;
+              addItemToCart(productName, productPrice, productImg);
             })
 
         }
@@ -53,7 +52,7 @@
         let likeHart = document.querySelectorAll('.like-hart')
         for (i = 0; i < addToCart.length; i++) {
             let allLike = likeHart[i]
-            productsLike(allLike);
+            handleLikeProducts(allLike);
         }
         
     }).catch(err => {
@@ -76,8 +75,7 @@
         }
 
 
-        let cartRowContents = 
-        `
+        let cartRowContents = `
             <div class="product-img col-5 mr-2">
                 <img src="${productImg}" alt="" class="c-img" id="img01">
             </div>
@@ -86,16 +84,17 @@
                 <p id="product-name">${productName}</p>
                 <p class="new-tag">新作</p>
                 <p class="p-price">${productPrice}</p>
-                <p class="delete two">削除</p>
+                <p class="deleteCartItem two">削除</p>
             </div>
-        `
+        `;
         cartRow.innerHTML = cartRowContents
         cartItem.append(cartRow)
-        let deleteBtn = document.querySelectorAll('.delete');
+        
+        let deleteBtn = document.querySelectorAll(".deleteCartItem");
 
         for (let i = 0; i < deleteBtn.length; i++) {
-            let deleteAllBtn = deleteBtn[i]
-            deleteAllBtn.addEventListener('click', removeCartItem)
+            let deleteBtnAll = deleteBtn[i]
+            deleteBtnAll.addEventListener('click', removeCartItem)
         }
         
 
@@ -106,7 +105,7 @@
     let counterHart = 0;
 
 
-    function productsLike(allLike){                
+    function handleLikeProducts(allLike){                
         allLike.addEventListener('click', function(e){
 
             let Like = './imgs/ic-like-full.svg'
@@ -141,7 +140,7 @@
 
             
 // 刪除功能
-let deleteBtn = document.querySelectorAll('.delete');
+let deleteBtn = document.querySelectorAll(".deleteCartItem");
 
 function removeCartItem(e){
         const deleteProduct = e.target.parentNode.parentNode
