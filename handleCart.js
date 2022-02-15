@@ -54,15 +54,19 @@
 
               let productName =
                 addProduct.parentNode.children[0].children[2].innerText;
-              let productPrice = addProduct.children[1].innerText.replace("¥","");
+              let productPrice = addProduct.children[1].innerText.replace(
+                "¥",
+                ""
+              );
 
               let productImg =
                 addProduct.parentNode.children[0].children[0].children[0].src;
 
               //   console.log(productName, productPrice, productImg);
 
-                //直接push進localstorage
-             /* let addProductItem = {
+              //直接push進localstorage
+              
+              /* let addProductItem = {
                 image: productImg,
                 product: productName,
                 price: productPrice,
@@ -70,20 +74,29 @@
 
               cartProductItem.push(addProductItem);
               localStorage.setItem("cart", JSON.stringify(cartProductItem));
-              */
 
+              let getStorageData = JSON.parse(localStorage.getItem("cart"));
+
+              for (i = 0; i < getStorageData.length; i++) {
+                console.log(getStorageData[i].product);
+                if(productName ！== getStorageData[i].product){
+                    console.log('push')
+                }
+              }
+
+              */
 
               //  同頁顯示購物車存進localstorage方法
 
-                addItemToCart(productName, productPrice, productImg);
+              addItemToCart(productName, productPrice, productImg);
 
-                let order = document.querySelectorAll(".order");
-                  console.log("order", order);
+              let order = document.querySelectorAll(".order");
+              console.log("order", order);
 
               let cartProductItem = [];
 
               for (let i = 0; i < order.length; i++) {
-                  console.log(order[i]);
+                // console.log(order[i]);
                 let orderItemImg = order[i].children[0].children[0].src;
                 let orderItemName = order[i].children[1].children[1].innerText;
                 let orderItemPrice = order[
@@ -100,7 +113,6 @@
 
               localStorage.setItem("cart", JSON.stringify(cartProductItem));
               // console.log(addProductItem);
-              
             })
 
 
