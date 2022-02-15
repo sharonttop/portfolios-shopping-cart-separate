@@ -2,6 +2,9 @@
     let i;
     let AllProduct='';
     let productList = document.querySelector('.product-list');
+    let cartProductItem = [];
+
+
     
 
     const productData = fetch('./data/products.json').then(response => {
@@ -35,18 +38,74 @@
         //加入購物車
         let addToCart = document.querySelectorAll('.add-to-cart')
 
+
         for(i=0; i < addToCart.length ; i++) {
+
+            // console.log(products[0].product);
+            // let allProductItem = {
+            //   image: products[i].image,
+            //   product: products[i].product,
+            //   price: products[i].price,
+            // };
+            // console.log(allProductItem);
 
             addToCart[i].addEventListener('click', function(e) {
               let addProduct = e.target.parentNode;
 
-                let productName = addProduct.parentNode.children[0].children[2].innerText;
-                let productPrice = addProduct.children[1].innerText;
-                let productImg = addProduct.parentNode.children[0].children[0].children[0].src;
-              addItemToCart(productName, productPrice, productImg);
+              let productName =
+                addProduct.parentNode.children[0].children[2].innerText;
+              let productPrice = addProduct.children[1].innerText.replace("¥","");
+
+              let productImg =
+                addProduct.parentNode.children[0].children[0].children[0].src;
+
+              //   console.log(productName, productPrice, productImg);
+
+                //直接push進localstorage
+             /* let addProductItem = {
+                image: productImg,
+                product: productName,
+                price: productPrice,
+              };
+
+              cartProductItem.push(addProductItem);
+              localStorage.setItem("cart", JSON.stringify(cartProductItem));
+              */
+
+
+              //  同頁顯示購物車存進localstorage方法
+
+                addItemToCart(productName, productPrice, productImg);
+
+                let order = document.querySelectorAll(".order");
+                  console.log("order", order);
+
+              let cartProductItem = [];
+
+              for (let i = 0; i < order.length; i++) {
+                  console.log(order[i]);
+                let orderItemImg = order[i].children[0].children[0].src;
+                let orderItemName = order[i].children[1].children[1].innerText;
+                let orderItemPrice = order[
+                  i
+                ].children[1].children[3].innerText.replace("¥", "");
+                let addProductItem = {
+                  image: orderItemImg,
+                  product: orderItemName,
+                  price: orderItemPrice,
+                };
+                cartProductItem.push(addProductItem);
+              }
+              console.log(cartProductItem);
+
+              localStorage.setItem("cart", JSON.stringify(cartProductItem));
+              // console.log(addProductItem);
+              
             })
 
+
         }
+
 
         // 加入我的最愛
         let likeHart = document.querySelectorAll('.like-hart')
@@ -54,16 +113,24 @@
             let allLike = likeHart[i]
             handleLikeProducts(allLike);
         }
-        
+        // totalCounter();
     }).catch(err => {
         console.log(error);
         
     });
 
+    console.log("cartProductItem", cartProductItem);
+
+      //同頁顯示購物車
     function addItemToCart(productName, productPrice, productImg){
         let cartRow = document.createElement('div');
-        cartRow.classList.add('order','d-flex','mb-4')
-        let cartItem = document.querySelector('.oder-bar')
+        cartRow.classList.add(
+          "order",
+          "col-md-1",
+          "col-6",
+          "mb-4"
+        );
+        let cartItem = document.querySelector('.order-bar')
         let cartItemName = cartItem.querySelectorAll('#product-name')
 
         for(let i = 0; i < cartItemName.length;i++){
@@ -76,31 +143,26 @@
 
 
         let cartRowContents = `
-            <div class="product-img col-5 mr-2">
+            <div class="product-img mr-2">
                 <img src="${productImg}" alt="" class="c-img" id="img01">
             </div>
-            <div class="oder-detail col-7">
+            <div class="order-detail">
                 <div class="p-name"></div>
-                <p id="product-name">${productName}</p>
-                <p class="new-tag">新作</p>
-                <p class="p-price">${productPrice}</p>
-                <p class="deleteCartItem two">削除</p>
+                <p class="bottom-cart-order" id="product-name">${productName}</p>
+                <p class="new-tag">入れ済み</p>
+                <p class="pc-price" style="display:none">${productPrice}</p>
+                <p class="deleteCartItem two" style="display:none">削除</p>
             </div>
         `;
         cartRow.innerHTML = cartRowContents
         cartItem.append(cartRow)
         
-        let deleteBtn = document.querySelectorAll(".deleteCartItem");
-
-        for (let i = 0; i < deleteBtn.length; i++) {
-            let deleteBtnAll = deleteBtn[i]
-            deleteBtnAll.addEventListener('click', removeCartItem)
-        }
+        handleDeleteBtn();
         
-
         totalCounter()
 
     }
+
 
     let counterHart = 0;
 
@@ -140,12 +202,33 @@
 
             
 // 刪除功能
-let deleteBtn = document.querySelectorAll(".deleteCartItem");
+
+    function handleDeleteBtn() {
+      let deleteBtn = document.querySelectorAll(".deleteCartItem");
+
+      for (let i = 0; i < deleteBtn.length; i++) {
+        let deleteBtnAll = deleteBtn[i];
+        deleteBtnAll.addEventListener("click", removeCartItem);
+      }
+    }
+
 
 function removeCartItem(e){
         const deleteProduct = e.target.parentNode.parentNode
 
         deleteProduct.remove();
+
+        const deleteProductName = e.target.parentNode.children[1].innerText;
+        let getCartdata = JSON.parse(localStorage.getItem("cart"));
+
+
+        const newProductData = getCartdata.filter(function (element) {
+          return element.product !== deleteProductName;
+        });
+        // console.log("newProductData", newProductData);
+        localStorage.setItem("cart", JSON.stringify(newProductData));
+
+
         totalCounter()
 
         
@@ -153,22 +236,23 @@ function removeCartItem(e){
 
 // 購物車計算功能
 function totalCounter(){
-    let allTotal = document.querySelector('.allTotal');
+    // let allTotal = document.querySelector('.allTotal');
 
-    let price = document.querySelectorAll('.p-price');
+    // let price = document.querySelectorAll('.p-price');
 
-    let total = 0;
+    // let total = 0;
 
-    for(let k = 0; k < price.length; k++){
-        let allPrice = price[k].innerText.replace('¥','');
-        total += Number(allPrice);
+    // for(let k = 0; k < price.length; k++){
+    //     let allPrice = price[k].innerText.replace('¥','');
+    //     total += Number(allPrice);
 
-    }
+    // }
 
     let order = document.querySelectorAll('.order');
 
     let count = document.querySelector('.count')
-    count.innerHTML = order.length + '件'
+
+    // count.innerHTML = order.length + "件";
 
     let cartCount = document.querySelector('#cart-count');
     let iconCount = document.querySelector('#icon-count');
@@ -183,14 +267,14 @@ function totalCounter(){
 
     }
 
-    let deliveryFee = document.querySelector('.delivery-fee')
-    deliveryFee.innerHTML = (order.length > 0) ? '¥'+ 600 : '¥'+0
+    // let deliveryFee = document.querySelector('.delivery-fee')
+    // deliveryFee.innerHTML = (order.length > 0) ? '¥'+ 600 : '¥'+0
 
-    let priceTotal = document.querySelector('.p-total')
-    priceTotal.innerHTML = '¥' + total
+    // let priceTotal = document.querySelector('.p-total')
+    // priceTotal.innerHTML = '¥' + total
 
 
-    allTotal.innerHTML = '¥' + (Number(order.length > 0 ? 600 : 0) + total)
+    // allTotal.innerHTML = '¥' + (Number(order.length > 0 ? 600 : 0) + total)
 
 
 }

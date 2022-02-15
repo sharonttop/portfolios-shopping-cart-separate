@@ -79,7 +79,7 @@
         }
         .product-list{
         margin-top: 47%;
-    }
+        }
 
     }
     .icon-p{
@@ -175,11 +175,15 @@
 
     #product-name{
         font-size: .9rem;
-        /* overflow:hidden;
-        text-overflow: ellipsis;
-        white-space:nowrap; */
 
     }
+    .bottom-cart-order{
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+    }
+
+
     .p-total,
     .p-price,
     .price-tag{
@@ -234,4 +238,12 @@
     .deleteCartItem:hover{
         opacity: 0.7;
         text-decoration:underline;
+    }
+    .cart-page{
+    padding-top: 40px;
+    }
+    @media (max-width: 576px) { 
+        .cart-page{
+        margin-top: 130px;
+        }
     }
