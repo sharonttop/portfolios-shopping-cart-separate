@@ -1,0 +1,42 @@
+[
+    {
+        "id": 6,
+        "image": "./imgs/goods_01_340674.jpg",
+        "category": "MAN",
+        "product": "デニムバルーンアンクルパンツ",
+        "new": true,
+        "price": 1990
+    },
+    {
+        "id": 7,
+        "image": "./imgs/goods_57_339523.jpg",
+        "category": "MAN",
+        "product": "バルーンジョガーパンツ",
+        "new": true,
+        "price": 1990
+    },
+    {
+        "id": 8,
+        "image": "./imgs/jpgoods_07_341364.jpg",
+        "category": "MAN",
+        "product": "ウォッシャブルテーパードトラウザーSW(セットアップ可能)",
+        "new": true,
+        "price": 2490
+    },
+    {
+        "id": 9,
+        "image": "./imgs/goods_01_339523.jpg",
+        "category": "MAN",
+        "product": "バルーンジョガーパンツ",
+        "new": true,
+        "price": 1990
+    },
+    {
+        "id": 10,
+        "image": "./imgs/goods_57_339467.jpg",
+        "category": "MAN",
+        "product": "ウルトラストレッチスキニーパンツ(股下76cm)",
+        "new": true,
+        "price": 1990
+    }
+]

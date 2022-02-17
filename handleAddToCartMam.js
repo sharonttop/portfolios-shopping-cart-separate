@@ -9,15 +9,16 @@
 
     
 
-    const productData = fetch('./data/products.json').then(response => {
-    return response.json();
-    }).then(products => {
-
+    const productData = fetch("./data/products-man.json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((products) => {
         allProductData = products;
-        // console.log(allProductData);
+        console.log(allProductData);
 
-        for( i=0; i< products.length; i++){
-            AllProduct += `
+        for (i = 0; i < products.length; i++) {
+          AllProduct += `
             <div class="product col-md">
                 <div>
                     <div class="product-img">
@@ -26,7 +27,7 @@
                             <img src="./imgs/ic-like.svg" alt="" class="c-img" id="hart-img">
                         </div>
                     </div>
-                    <p class='gender'>WOMEN</p>
+                    <p class='gender'>${products[i].category}</p>
                     <p id="product-name">${products[i].product}</p>
                 </div>
                 <div>
@@ -36,55 +37,51 @@
                 </div>
             </div>
             `;
-            productList.innerHTML = AllProduct
-
-
+          productList.innerHTML = AllProduct;
         }
         //加入購物車
-        let addToCart = document.querySelectorAll('.add-to-cart')
+        let addToCart = document.querySelectorAll(".add-to-cart");
 
+        for (i = 0; i < addToCart.length; i++) {
+          addToCart[i].addEventListener("click", function (e) {
+            let getDataId = e.target.getAttribute("data-id");
+            let idName = getDataId < 0 ? 0 : getDataId - 6;
+                        
+            console.log(getDataId);
 
-        for(i=0; i < addToCart.length ; i++) {
+            console.log(getDataId);
+            console.log(idName);
+            console.log(products[0]);
 
-            addToCart[i].addEventListener('click', function(e) {
-              let getDataId = e.target.getAttribute("data-id");
-              let idName = getDataId < 0 ? 0 : getDataId - 1;
-              
-              // console.log(idName);
-              // console.log(products[idName]);
+            let getProductData = products[idName];
+            let productImg = getProductData.image;
 
-              let getProductData = products[idName];
-              let productImg = getProductData.image;
+            let productName = getProductData.product;
+            let productPrice = getProductData.price;
 
-              let productName = getProductData.product;
-              let productPrice = getProductData.price;
+            //  同頁顯示購物車存進localstorage方法
 
-              //  同頁顯示購物車存進localstorage方法
-
-              addItemToCart(
-                productName,
-                productPrice,
-                productImg,
-                idName,
-                getProductData
-              );
-            })
-
-
+            addItemToCart(
+              productName,
+              productPrice,
+              productImg,
+              idName,
+              getProductData
+            );
+          });
         }
 
-        
         // 加入我的最愛
-        let likeHart = document.querySelectorAll('.like-hart')
+        let likeHart = document.querySelectorAll(".like-hart");
         for (i = 0; i < addToCart.length; i++) {
-            let allLike = likeHart[i]
-            handleLikeProducts(allLike);
+          let allLike = likeHart[i];
+          handleLikeProducts(allLike);
         }
         // totalCounter();
-    }).catch(err => {
+      })
+      .catch((err) => {
         console.log(error);
-        
-    });
+      });
    
 
     let allCartProductItem =[];
