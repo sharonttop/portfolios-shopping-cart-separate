@@ -113,11 +113,10 @@
       ) {
         return arr.indexOf(element) !== index;
       });
-      // console.log(repeatLocalstorage);
+
       if (repeatLocalstorage.length > 0) {
-        // console.log(repeatLocalstorage.length > 0);
+        // repeatLocalstorage = [];
         alert("商品已加入購物車");
-        return;
       }
 
       let addToLocalstorage = allCartProductItem.filter(function (
