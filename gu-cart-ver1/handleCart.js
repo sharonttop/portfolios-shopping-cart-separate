@@ -18,7 +18,7 @@
                     <div class="product-img">
                         <img src="${products[i].image}" alt="" class="c-img" id="p-img">
                         <div class="like-hart">
-                            <img src="./imgs/ic-like.svg" alt="" class="c-img" id="hart-img">
+                            <img src="../imgs/ic-like.svg" alt="" class="c-img" id="hart-img">
                         </div>
                     </div>
                     <p class='gender'>WOMEN</p>
@@ -182,8 +182,8 @@
     function handleLikeProducts(allLike){                
         allLike.addEventListener('click', function(e){
 
-            let Like = './imgs/ic-like-full.svg'
-            let unLike = './imgs/ic-like.svg'
+            let Like = '../imgs/ic-like-full.svg'
+            let unLike = '../imgs/ic-like.svg'
             let likeCount = document.querySelector('#like-count');
             let fullLikeCount = document.querySelector('#full-like-count');
 

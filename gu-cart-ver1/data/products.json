@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "image": "../imgs/goods_01_339813.jpg",
+        "category": "WOMEN",
+        "product": "フリルカラーチュニックブラウス(長袖)",
+        "new": true,
+        "price": 2490
+    },
+    {
+        "id": 2,
+        "image": "../imgs/goods_09_340173.jpg",
+        "category": "WOMEN",
+        "product": "UVカットメッシュコンビネーションブルゾンGA+X",
+        "new": true,
+        "price": 2490
+    },
+    {
+        "id": 3,
+        "image": "../imgs/goods_12_340274.jpg",
+        "category": "WOMEN",
+        "product": "ドローストリングヨガT(長袖)GA+X",
+        "new": true,
+        "price": 1690
+    },
+    {
+        "id": 4,
+        "image": "../imgs/goods_31_339947.jpg",
+        "category": "WOMEN",
+        "product": "2wayレイヤードチュニックシャツ(長袖)",
+        "new": true,
+        "price": 2490
+    },
+    {
+        "id": 5,
+        "image": "../imgs/goods_30_341209.jpg",
+        "category": "WOMEN",
+        "product": "ラグランスリーブT(長袖)NT+E",
+        "new": true,
+        "price": 1690
+    }
+]

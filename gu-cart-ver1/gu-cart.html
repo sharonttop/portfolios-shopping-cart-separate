@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GU shopping-cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="nav d-flex justify-content-between px-5 pt-2">
-        <div class="logo"><img src="./imgs/logo-gu.svg" alt="" class="c-img">
+        <div class="logo"><img src="../imgs/logo-gu.svg" alt="" class="c-img">
         </div>
 
         <div class="category d-flex justify-content-between">
@@ -30,28 +30,28 @@
 
             <a href="#">
                 <div class="store-locator text-center mr-3">
-                    <img src="./imgs/ic-store-locator.svg" alt="">
+                    <img src="../imgs/ic-store-locator.svg" alt="">
                     <p class="icon-p text-nowrap">店舗検索</p>
                 </div>
             </a>
             <a href="#">
                 <div class="member text-center mr-3">
-                    <img src="./imgs/ic-membership.svg" alt="" >
+                    <img src="../imgs/ic-membership.svg" alt="" >
                     <p class="icon-p text-nowrap">ログイン</p>
                 </div>
             </a>
             <a href="#">
                 <div class="like text-center mr-3">
-                    <img src="./imgs/ic-like.svg" alt="">
+                    <img src="../imgs/ic-like.svg" alt="">
                     <p class="icon-p text-nowrap">お気に入り</p>
                     <div id='like-count' class="">
                         <span id='full-like-count' class=""></span>
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <a href="./gu-cart-page.html">
                 <div class="shopping-cart text-center mr-3">
-                    <img src="./imgs/ic-cart.svg" alt="">
+                    <img src="../imgs/ic-cart.svg" alt="">
                     <p class="icon-p text-nowrap">カート</p>
                     <div id='cart-count' class="">
                         <span id='icon-count' class = ""></span>
@@ -61,15 +61,17 @@
         </div>
     </div>
 
-    <div class="cart cart-page">
+    <div class="product-list d-flex flex-wrap">
+    </div>
+    <div class="cart">
         <div class="cart-text-box ml-3">
-            <div class="title">カート</div>
-            <p>ORDER & PICKについて</p>
+            <!-- <div class="title">カート</div> -->
+            <p>ORDER</p>
         </div>
-        <div class="d-flex flex-wrap">
-            <div class="order-bar col-md-7 col-xs-12">
+        <div class="">
+            <div class="d-flex order-bar flex-wrap">
             </div>
-            <div class="cart-bar col-md-5 col-xs-12">
+            <!-- <div class="cart-bar col-md-5 col-xs-12">
             
                 <div class="d-flex justify-content-between">
                     <p>注文内容</p>
@@ -89,10 +91,10 @@
                 </div>
                 <a href="#"><div class="buy">購入手続きへ</div></a>
                 <a href="#"><div class="buy-other">お買い物を続ける</div></a>
-            </div>
+            </div> -->
         </div>
     </div>
-    <script type="text/javascript" src="./handleCartDetail.js"></script>
+    <script type="text/javascript" src="./handleCart.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
