@@ -1,0 +1,42 @@
+[
+    {
+        "id": 11,
+        "image": "./imgs/goods_71_339916.jpg",
+        "category": "KIDS･BABY",
+        "product": "GIRLSコクーンカーディガン(長袖)",
+        "new": true,
+        "price": 1990
+    },
+    {
+        "id": 12,
+        "image": "./imgs/goods_30_339683.jpg",
+        "category": "KIDS･BABY",
+        "product": "KIDS(男女兼用)クルーネックスウェットプルオーバー(長袖)",
+        "new": true,
+        "price": 990
+    },
+    {
+        "id": 13,
+        "image": "./imgs/goods_52_339916.jpg",
+        "category": "KIDS･BABY",
+        "product": "GIRLSコクーンカーディガン(長袖)",
+        "new": true,
+        "price": 1990
+    },
+    {
+        "id": 14,
+        "image": "./imgs/goods_60_339821.jpg",
+        "category": "KIDS･BABY",
+        "product": "GIRLSスパンコールT(長袖)+E",
+        "new": true,
+        "price": 1490
+    },
+    {
+        "id": 15,
+        "image": "./imgs/goods_54_339683.jpg",
+        "category": "KIDS･BABY",
+        "product": "KIDS(男女兼用)クルーネックスウェットプルオーバー(長袖)",
+        "new": true,
+        "price": 990
+    }
+]
