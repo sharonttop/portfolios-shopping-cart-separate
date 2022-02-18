@@ -19,19 +19,19 @@ let confirmClientInfo = document.querySelector(".confirm-client-info");
             <p class="client-info-title">配送先</p>
             <div class="d-flex  m-1">
                 <label for="name">名前</label>
-                <div>${clientName}</div>
+                <div class="col-10">${clientName}</div>
             </div>
             <div class="d-flex m-1">
                 <label for="email">メール</label>
-                <div>${clientEmail}</div>
+                <div class="col-10">${clientEmail}</div>
             </div>
             <div class="d-flex m-1">
                 <label for="phone">電話</label>
-                <div>${clientPhone}</div>
+                <div class="col-10">${clientPhone}</div>
             </div>
             <div class="d-flex m-1">
                 <label for="address">住所</label>
-                <div>${clientaddress}</div>
+                <div class="col-10">${clientaddress}</div>
             </div>
           </div>
         `;
