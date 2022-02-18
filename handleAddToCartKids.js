@@ -8,7 +8,6 @@
   let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
 
     
-  totalCounter();
     const productData = fetch("./data/products-kids.json")
       .then((response) => {
         return response.json();
