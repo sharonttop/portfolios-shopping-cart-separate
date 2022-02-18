@@ -247,3 +247,80 @@
         margin-top: 130px;
         }
     }
+/* 結帳頁面 */
+.checkout-title{
+    font-weight: 500;
+    font-size:1.2rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #dadada;
+
+}
+.checkout-page{
+    margin-top: 95px;
+}
+.order-checkout{
+    border-bottom: 1px solid #dadada;
+}
+@media (min-width: 576px) { 
+    .order-detail-checkout{
+        display: flex;
+        justify-content: space-between;
+    }
+    .checkout-page{
+    margin-top: 95px;
+
+    padding-left: 5%;
+    padding-right:5%;
+
+}
+}
+@media (max-width: 576px) { 
+
+.checkout-page{
+    margin-top: 180px;
+}
+}
+
+label{
+    font-size:.9rem;
+}
+
+.save-client-info{
+    display:flex;
+    background-color: rgb(18, 40, 138);
+    color: white;
+    align-items: center;
+    justify-content:center;
+    height: 50px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+}
+.client-info-title{
+    font-weight: 500;
+    font-size:1rem;
+}
+@media (max-width: 576px) { 
+.client-info{
+    border-bottom: 1px solid #dadada;
+    padding-bottom:10%;
+    margin-bottom: 10%;
+}
+.confirm-client-info{
+    border-bottom: 1px solid #dadada;
+    padding-bottom:10%;
+    margin-bottom: 10%;
+}
+
+}
+.complete-order{
+    display:flex;
+    background-color: red;
+    color: white;
+    align-items: center;
+    justify-content:center;
+    height: 50px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+}

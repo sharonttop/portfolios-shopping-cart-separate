@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <a href="./cart-page.html">
                 <div class="shopping-cart text-center mr-3">
                     <img src="./imgs/ic-cart.svg" alt="">
                     <p class="icon-p text-nowrap">カート</p>
@@ -59,38 +59,46 @@
         </div>
     </div>
 
-    <div class="cart cart-page">
+    <div class="cart checkout-page">
         <div class="cart-text-box ml-3">
-            <div class="title">カート</div>
-            <p>ORDER & PICKについて</p>
+            <div class="checkout-title">注文内容</div>
+            <!-- <p>ORDER & PICKについて</p> -->
         </div>
-        <div class="d-flex flex-wrap">
-            <div class="order-bar col-md-7 col-xs-12">
+        <div class="checkout-wrap">
+            <div class="checkout-order-bar">
             </div>
-            <div class="cart-bar col-md-5 col-xs-12">
-            
-                <div class="d-flex justify-content-between">
-                    <p>注文内容</p>
-                    <div class="count">0件</div>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div class="confirm-client-info col-md-5">
                 </div>
-                <div class="d-flex justify-content-between">
-                    <p>商品合計</p>
-                    <div class="p-total">¥0</div>
+                <div class="checkout-bar col-md-6">
+                
+                    <div class="d-flex justify-content-between">
+                        <p>注文内容</p>
+                        <div class="count">0件</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>商品合計</p>
+                        <div class="p-total">¥0</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>送料</p>
+                        <div class="delivery-fee">¥0</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>合計</p>
+                        <div class="allTotal">¥0</div>
+                    </div>
+                    <div type="button" class="complete-order" onclick="completeOrder()">注文する</div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <p>送料</p>
-                    <div class="delivery-fee">¥0</div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <p>合計</p>
-                    <div class="allTotal">¥0</div>
-                </div>
-                <a href="./checkout-page.html"><div class="buy">購入手続きへ</div></a>
-                <a href="#"><div class="buy-other">お買い物を続ける</div></a>
+                   
             </div>
         </div>
+
     </div>
-    <script type="text/javascript" src="./handleCart.js"></script>
+    </div>
+
+    
+    <script type="text/javascript" src="./handleOrderConfirmation.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
