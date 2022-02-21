@@ -13,7 +13,6 @@ const getCartProductItem = () => {
     let cartImg = localstorageDataKey.image;
     let cartProduct = localstorageDataKey.product;
     let cartPrice = localstorageDataKey.price;
-    let cartId = localstorageDataKey.id;
     let cartQty = localstorageDataKey.qty;
     let productTotal = cartQty * cartPrice;
     cartRowContents += `
@@ -28,8 +27,8 @@ const getCartProductItem = () => {
                 </div>
                 <div class="price-box">
                   <p class="po-price pr-3">価格: ¥${cartPrice}</p>
-                  <p class="p-qty pr-3">数量: ${cartQty}件</p>
-                  <p class="p-price">小計: ¥${productTotal}</p>
+                  <p class="po-qty p-qty pr-5">数量: ${cartQty}件</p>
+                  <p class="po-subtotal">小計: ¥${productTotal}</p>
                 </div>
               </div>
         </div>
@@ -37,31 +36,8 @@ const getCartProductItem = () => {
   }
     cartItem.innerHTML = cartRowContents;
 
-    handleDeleteBtn();
     totalCounter();
 };
-
-
-
-function handleDeleteBtn(){
-        let deleteBtn = document.querySelectorAll(".deleteCartItem");
-
-        for (let i = 0; i < deleteBtn.length; i++) {
-          let deleteBtnAll = deleteBtn[i];
-          deleteBtnAll.addEventListener("click", removeCartItem);
-        }
-}
-
-
-function removeCartItem(e) {
-  const deleteProduct = e.target.parentNode.parentNode.parentNode;
-
-  const id = e.target.getAttribute("data-id");
-  delete cartLocalstorageData[id];
-  deleteProduct.remove();
-  localStorage.setItem("cart", JSON.stringify(cartLocalstorageData));
-  totalCounter();
-}
 
 
 getCartProductItem();

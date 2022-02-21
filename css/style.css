@@ -284,6 +284,13 @@
 label{
     font-size:.9rem;
 }
+.po-price,.po-qty{
+    font-size: .9rem;
+}
+.po-subtotal{
+    font-size: 1rem;
+    font-weight:500;
+}
 
 .save-client-info{
     display:flex;
