@@ -86,16 +86,18 @@ function handleDeleteBtn() {
 
 function removeCartItem(e) {
   const deleteProduct = e.target.parentNode.parentNode;
-
   const id = e.target.getAttribute("data-id");
-  console.log("id", id);
 
-  delete cartLocalstorageData[id];
-
-  deleteProduct.remove();
+  const deleteConfirm = confirm("你確定要刪除此商品嗎？");
+  if (deleteConfirm) {
+    delete cartLocalstorageData[id];
+      deleteProduct.remove();
+    handleCartUpdate();
+  } else {
+    return;
+  }
 
   localStorage.setItem("cart", JSON.stringify(cartLocalstorageData));
-  handleCartUpdate();
   totalCounter();
 }
 
