@@ -324,3 +324,50 @@ label{
     cursor: pointer;
 
 }
+@media (min-width: 576px) { 
+    .price-box{
+        display: flex;
+    }
+}
+
+.minus-btn,.add-btn{
+    margin: 0 5px;
+    width: 25px;
+    height: 25px;
+    background-color:rgb(187, 185, 185);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+     display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.cart-no-product{
+    margin-top: 8%;
+    text-align: center;
+}
+.buy-other-no{
+    background-color:black;
+    color: white;
+    display:flex;
+    border: solid .7px black;
+    align-items: center;
+    justify-content:center;
+    height: 50px;
+}
+.buy-other-no:hover{
+    background-color:white;
+    color: black;
+}
+@media (min-width: 576px) { 
+.cart-no-product{
+    margin-top: 3%;
+    text-align: center;
+}
+.buy-other-no{
+    width:80%;
+}
+.subtotal{
+    margin-left:20%;
+}
+}

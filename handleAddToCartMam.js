@@ -45,15 +45,16 @@
         for (i = 0; i < addToCart.length; i++) {
           addToCart[i].addEventListener("click", function (e) {
             let getDataId = e.target.getAttribute("data-id");
-            let idName = getDataId < 0 ? 0 : getDataId - 6;
+            let dataIndex = getDataId - 6;
+
                         
-            console.log(getDataId);
+            // console.log(getDataId);
 
-            console.log(getDataId);
-            console.log(idName);
-            console.log(products[0]);
+            // console.log(getDataId);
+            // console.log(idName);
+            // console.log(products[0]);
 
-            let getProductData = products[idName];
+            let getProductData = products[dataIndex];
             let productImg = getProductData.image;
 
             let productName = getProductData.product;
