@@ -1,9 +1,6 @@
-let i;
 let AllProduct = "";
 let productList = document.querySelector(".product-list");
-let cartProductItem = [];
 
-let allProductData = null;
 let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
 
 const productData = fetch("./data/products-women.json")
@@ -11,8 +8,6 @@ const productData = fetch("./data/products-women.json")
     return response.json();
   })
   .then((products) => {
-    allProductData = products;
-    // console.log(allProductData);
 
     for (i = 0; i < products.length; i++) {
       AllProduct += `
@@ -34,18 +29,16 @@ const productData = fetch("./data/products-women.json")
                 </div>
             </div>
             `;
-      productList.innerHTML = AllProduct;
     }
+    productList.innerHTML = AllProduct;
+
     //加入購物車
     let addToCart = document.querySelectorAll(".add-to-cart");
 
-    for (i = 0; i < addToCart.length; i++) {
+    for (let i = 0; i < addToCart.length; i++) {
       addToCart[i].addEventListener("click", function (e) {
         let getDataId = e.target.getAttribute("data-id");
         let dataIndex = getDataId - 1;
-
-        // console.log(idName);
-        // console.log(products[idName]);
 
         let getProductData = products[dataIndex];
 
@@ -60,9 +53,6 @@ const productData = fetch("./data/products-women.json")
         //幫物件data加上id
         let productDataObj = {};
         productDataObj[getDataId] = getProductData;
-        console.log('productDataObj', productDataObj);
-
-        //  同頁顯示購物車存進localstorage方法
 
         addItemToCart(
           productName,
@@ -80,7 +70,6 @@ const productData = fetch("./data/products-women.json")
       let allLike = likeHart[i];
       handleLikeProducts(allLike);
     }
-    // totalCounter();
   })
   .catch((err) => {
     console.log(error);
@@ -119,24 +108,24 @@ function handleLikeProducts(allLike) {
   allLike.addEventListener("click", function (e) {
     let Like = "./imgs/ic-like-full.svg";
     let unLike = "./imgs/ic-like.svg";
-    let likeCount = document.querySelector("#like-count");
-    let fullLikeCount = document.querySelector("#full-like-count");
+    // let likeCount = document.querySelector("#like-count");
+    // let fullLikeCount = document.querySelector("#full-like-count");
 
     if (e.target.src.indexOf("ic-like-full.svg") === -1) {
-      likeCount.classList.add("like-count");
-      fullLikeCount.classList.add("full-like-count");
+      // likeCount.classList.add("like-count");
+      // fullLikeCount.classList.add("full-like-count");
       e.target.src = Like;
-      counterHart++;
-      fullLikeCount.innerHTML = counterHart;
+      // counterHart++;
+      // fullLikeCount.innerHTML = counterHart;
     } else {
       e.target.src = unLike;
-      counterHart--;
-      fullLikeCount.innerHTML = counterHart;
-      if (counterHart === 0) {
-        likeCount.classList.remove("like-count");
-        fullLikeCount.classList.remove("full-like-count");
-        fullLikeCount.innerHTML = "";
-      }
+      // counterHart--;
+      // fullLikeCount.innerHTML = counterHart;
+      // if (counterHart === 0) {
+      //   likeCount.classList.remove("like-count");
+      //   fullLikeCount.classList.remove("full-like-count");
+      //   fullLikeCount.innerHTML = "";
+      // }
     }
   });
 }
@@ -147,7 +136,6 @@ function totalCounter() {
   let iconCount = document.querySelector("#icon-count");
   let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
   if (cartLocalstorageData && Object.keys(cartLocalstorageData).length > 0) {
-    // console.log(cartLocalstorageData.length);
     cartCount.classList.add("cart-count");
     iconCount.classList.add("icon-count");
     iconCount.innerHTML = Object.keys(cartLocalstorageData).length;
