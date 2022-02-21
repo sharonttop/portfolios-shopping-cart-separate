@@ -25,7 +25,7 @@ const getCartProductItem = () => {
                   <p id="product-name">${cartProduct}</p>
                   <p class="new-tag">新作</p>
                 </div>
-                <div class="price-box col-md-4">
+                <div class="price-box">
                   <p class="po-price pr-3">価格: ¥${cartPrice}</p>
                   <p class="po-qty p-qty pr-5">数量: ${cartQty}件</p>
                   <p class="po-subtotal">小計: ¥${productTotal}</p>
