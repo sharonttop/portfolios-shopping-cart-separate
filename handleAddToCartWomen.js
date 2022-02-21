@@ -42,11 +42,6 @@ const productData = fetch("./data/products-women.json")
 
         let getProductData = products[dataIndex];
 
-        let productImg = getProductData.image;
-
-        let productName = getProductData.product;
-        let productPrice = getProductData.price;
-
         getProductData["qty"] = 1;
         //中括號表示法可以代變數或字串，但點表示法不行。
 
@@ -55,9 +50,6 @@ const productData = fetch("./data/products-women.json")
         productDataObj[getDataId] = getProductData;
 
         addItemToCart(
-          productName,
-          productPrice,
-          productImg,
           getDataId,
           productDataObj
         );
@@ -75,14 +67,7 @@ const productData = fetch("./data/products-women.json")
     console.log(error);
   });
 
-//同頁顯示購物車
-function addItemToCart(
-  productName,
-  productPrice,
-  productImg,
-  getDataId,
-  getProductData
-) {
+function addItemToCart(getDataId, productDataObj) {
   let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
   let addToLocalstorage = {};
 
@@ -95,7 +80,7 @@ function addItemToCart(
     cartLocalstorageData[getDataId].qty += 1;
     addToLocalstorage = { ...cartLocalstorageData };
   } else {
-    addToLocalstorage = { ...cartLocalstorageData, ...getProductData };
+    addToLocalstorage = { ...cartLocalstorageData, ...productDataObj};
   }
 
   localStorage.setItem("cart", JSON.stringify(addToLocalstorage));
@@ -108,24 +93,11 @@ function handleLikeProducts(allLike) {
   allLike.addEventListener("click", function (e) {
     let Like = "./imgs/ic-like-full.svg";
     let unLike = "./imgs/ic-like.svg";
-    // let likeCount = document.querySelector("#like-count");
-    // let fullLikeCount = document.querySelector("#full-like-count");
 
     if (e.target.src.indexOf("ic-like-full.svg") === -1) {
-      // likeCount.classList.add("like-count");
-      // fullLikeCount.classList.add("full-like-count");
       e.target.src = Like;
-      // counterHart++;
-      // fullLikeCount.innerHTML = counterHart;
     } else {
       e.target.src = unLike;
-      // counterHart--;
-      // fullLikeCount.innerHTML = counterHart;
-      // if (counterHart === 0) {
-      //   likeCount.classList.remove("like-count");
-      //   fullLikeCount.classList.remove("full-like-count");
-      //   fullLikeCount.innerHTML = "";
-      // }
     }
   });
 }
@@ -135,10 +107,12 @@ function totalCounter() {
   let cartCount = document.querySelector("#cart-count");
   let iconCount = document.querySelector("#icon-count");
   let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
-  if (cartLocalstorageData && Object.keys(cartLocalstorageData).length > 0) {
+  let cartLocalstorageKeys = Object.keys(cartLocalstorageData);
+
+  if (cartLocalstorageData && cartLocalstorageKeys.length > 0) {
     cartCount.classList.add("cart-count");
     iconCount.classList.add("icon-count");
-    iconCount.innerHTML = Object.keys(cartLocalstorageData).length;
+    iconCount.innerHTML = cartLocalstorageKeys.length;
   } else {
     cartCount.classList.remove("cart-count");
     iconCount.classList.remove("icon-count");

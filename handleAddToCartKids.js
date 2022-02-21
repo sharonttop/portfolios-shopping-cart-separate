@@ -1,10 +1,6 @@
 
-    let i;
-    let AllProduct='';
-    let productList = document.querySelector('.product-list');
-    let cartProductItem = [];
-
-  let allProductData = null;
+  let AllProduct='';
+  let productList = document.querySelector('.product-list');
   let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
 
     
@@ -13,9 +9,6 @@
         return response.json();
       })
       .then((products) => {
-        allProductData = products;
-        console.log(allProductData);
-
         for (i = 0; i < products.length; i++) {
           AllProduct += `
             <div class="product col-md">
@@ -36,38 +29,26 @@
                 </div>
             </div>
             `;
-          productList.innerHTML = AllProduct;
         }
+        productList.innerHTML = AllProduct;
+
         //加入購物車
         let addToCart = document.querySelectorAll(".add-to-cart");
 
-        for (i = 0; i < addToCart.length; i++) {
+        for (let i = 0; i < addToCart.length; i++) {
           addToCart[i].addEventListener("click", function (e) {
             let getDataId = e.target.getAttribute("data-id");
             let dataIndex = getDataId - 11;
 
-
-            // console.log(getDataId);
-
-            // console.log(getDataId);
-            // console.log(idName);
-            // console.log(products[0]);
-
             let getProductData = products[dataIndex];
-            let productImg = getProductData.image;
+            getProductData['qty'] = 1;
 
-            let productName = getProductData.product;
-            let productPrice = getProductData.price;
+            let productDataObj = {}
+            productDataObj[getDataId] = getProductData;
 
             //  同頁顯示購物車存進localstorage方法
 
-            addItemToCart(
-              productName,
-              productPrice,
-              productImg,
-              idName,
-              getProductData
-            );
+            addItemToCart(getDataId, productDataObj);
           });
         }
 
@@ -84,81 +65,37 @@
       });
    
 
-    let allCartProductItem =[];
-
       //同頁顯示購物車
-    function addItemToCart(
-      productName,
-      productPrice,
-      productImg,
-      idName,
-      getProductData
-    ) {
+    function addItemToCart(getDataId, productDataObj) {
       let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
-      if (cartLocalstorageData !== null && allCartProductItem.length == 0){
-        allCartProductItem.push(...cartLocalstorageData);
+      let addToLocalstorage = {};
+
+      if (
+        cartLocalstorageData &&
+        Object.keys(cartLocalstorageData).length != 0 &&
+        cartLocalstorageData[getDataId]
+      ) {
+        alert("購物車商品已為您新增數量。");
+        cartLocalstorageData[getDataId].qty += 1;
+        addToLocalstorage = { ...cartLocalstorageData };
+      } else {
+        addToLocalstorage = { ...cartLocalstorageData, ...productDataObj };
       }
 
-      allCartProductItem.push(getProductData);
-
-      var repeatLocalstorage = allCartProductItem.filter(function (
-        element,
-        index,
-        arr
-      ) {
-        return arr.indexOf(element) !== index;
-      });
-
-      if (repeatLocalstorage.length > 0) {
-        // repeatLocalstorage = [];
-        alert("商品已加入購物車");
-      }
-
-      let addToLocalstorage = allCartProductItem.filter(function (
-        element,
-        index,
-        arr
-      ) {
-        return arr.indexOf(element) === index;
-      });
       localStorage.setItem("cart", JSON.stringify(addToLocalstorage));
-      allCartProductItem = addToLocalstorage;
-
       totalCounter();
     }
 
-
-    let counterHart = 0;
-
-
     function handleLikeProducts(allLike){                
         allLike.addEventListener('click', function(e){
-
             let Like = './imgs/ic-like-full.svg'
             let unLike = './imgs/ic-like.svg'
-            let likeCount = document.querySelector('#like-count');
-            let fullLikeCount = document.querySelector('#full-like-count');
 
             if(e.target.src.indexOf('ic-like-full.svg') === -1){
-                likeCount.classList.add('like-count');
-                fullLikeCount.classList.add('full-like-count');
                 e.target.src = Like
-                counterHart++;
-                fullLikeCount.innerHTML = counterHart;
-
             }else{
-
                 e.target.src = unLike
-                counterHart--;
-                fullLikeCount.innerHTML = counterHart;
-                if(counterHart === 0){
-                    likeCount.classList.remove('like-count');
-                    fullLikeCount.classList.remove('full-like-count');
-                    fullLikeCount.innerHTML = '';
-
-                }
             }
-
         })
 
     }
@@ -166,15 +103,15 @@
 
 // 購物車計算功能
 function totalCounter(){
-
     let cartCount = document.querySelector("#cart-count");
     let iconCount = document.querySelector("#icon-count");
     let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
-    if (cartLocalstorageData.length > 0) {
-      // console.log(cartLocalstorageData.length);
+    let cartLocalstorageKeys = Object.keys(cartLocalstorageData);
+
+    if (cartLocalstorageData && cartLocalstorageKeys.length > 0) {
       cartCount.classList.add("cart-count");
       iconCount.classList.add("icon-count");
-      iconCount.innerHTML = cartLocalstorageData.length;
+      iconCount.innerHTML = cartLocalstorageKeys.length;
     } else {
       cartCount.classList.remove("cart-count");
       iconCount.classList.remove("icon-count");

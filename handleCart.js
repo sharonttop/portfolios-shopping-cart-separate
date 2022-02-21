@@ -123,7 +123,6 @@ function totalCounter() {
     let iconCount = document.querySelector("#icon-count");
 
     if (Object.keys(cartLocalstorageData).length > 0) {
-      // console.log(Object.keys(cartLocalstorageData).length);
       cartCount.classList.add("cart-count");
       iconCount.classList.add("icon-count");
       iconCount.innerHTML = Object.keys(cartLocalstorageData).length;
