@@ -8,7 +8,6 @@ const productData = fetch("./data/products-women.json")
     return response.json();
   })
   .then((products) => {
-
     for (i = 0; i < products.length; i++) {
       AllProduct += `
             <div class="product col-md">
@@ -49,10 +48,7 @@ const productData = fetch("./data/products-women.json")
         let productDataObj = {};
         productDataObj[getDataId] = getProductData;
 
-        addItemToCart(
-          getDataId,
-          productDataObj
-        );
+        addItemToCart(getDataId, productDataObj);
       });
     }
 
@@ -80,7 +76,7 @@ function addItemToCart(getDataId, productDataObj) {
     cartLocalstorageData[getDataId].qty += 1;
     addToLocalstorage = { ...cartLocalstorageData };
   } else {
-    addToLocalstorage = { ...cartLocalstorageData, ...productDataObj};
+    addToLocalstorage = { ...cartLocalstorageData, ...productDataObj };
   }
 
   localStorage.setItem("cart", JSON.stringify(addToLocalstorage));
@@ -119,4 +115,3 @@ function totalCounter() {
     iconCount.innerHTML = "";
   }
 }
-totalCounter();

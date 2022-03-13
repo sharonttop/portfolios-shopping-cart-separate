@@ -1,16 +1,14 @@
+let AllProduct = "";
+let productList = document.querySelector(".product-list");
+let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
 
-  let AllProduct='';
-  let productList = document.querySelector('.product-list');
-  let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
-
-    
-    const productData = fetch("./data/products-kids.json")
-      .then((response) => {
-        return response.json();
-      })
-      .then((products) => {
-        for (i = 0; i < products.length; i++) {
-          AllProduct += `
+const productData = fetch("./data/products-kids.json")
+  .then((response) => {
+    return response.json();
+  })
+  .then((products) => {
+    for (i = 0; i < products.length; i++) {
+      AllProduct += `
             <div class="product col-md">
                 <div>
                     <div class="product-img">
@@ -29,93 +27,88 @@
                 </div>
             </div>
             `;
-        }
-        productList.innerHTML = AllProduct;
+    }
+    productList.innerHTML = AllProduct;
 
-        //加入購物車
-        let addToCart = document.querySelectorAll(".add-to-cart");
+    //加入購物車
+    let addToCart = document.querySelectorAll(".add-to-cart");
 
-        for (let i = 0; i < addToCart.length; i++) {
-          addToCart[i].addEventListener("click", function (e) {
-            let getDataId = e.target.getAttribute("data-id");
-            let dataIndex = getDataId - 11;
+    for (let i = 0; i < addToCart.length; i++) {
+      addToCart[i].addEventListener("click", function (e) {
+        let getDataId = e.target.getAttribute("data-id");
+        let dataIndex = getDataId - 11;
 
-            let getProductData = products[dataIndex];
-            getProductData['qty'] = 1;
+        let getProductData = products[dataIndex];
+        getProductData["qty"] = 1;
 
-            let productDataObj = {}
-            productDataObj[getDataId] = getProductData;
+        let productDataObj = {};
+        productDataObj[getDataId] = getProductData;
 
-            //  同頁顯示購物車存進localstorage方法
+        //  同頁顯示購物車存進localstorage方法
 
-            addItemToCart(getDataId, productDataObj);
-          });
-        }
-
-        // 加入我的最愛
-        let likeHart = document.querySelectorAll(".like-hart");
-        for (i = 0; i < addToCart.length; i++) {
-          let allLike = likeHart[i];
-          handleLikeProducts(allLike);
-        }
-        // totalCounter();
-      })
-      .catch((err) => {
-        console.log(error);
+        addItemToCart(getDataId, productDataObj);
       });
-   
-
-      //同頁顯示購物車
-    function addItemToCart(getDataId, productDataObj) {
-      let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
-      let addToLocalstorage = {};
-
-      if (
-        cartLocalstorageData &&
-        Object.keys(cartLocalstorageData).length != 0 &&
-        cartLocalstorageData[getDataId]
-      ) {
-        alert("購物車商品已為您新增數量。");
-        cartLocalstorageData[getDataId].qty += 1;
-        addToLocalstorage = { ...cartLocalstorageData };
-      } else {
-        addToLocalstorage = { ...cartLocalstorageData, ...productDataObj };
-      }
-
-      localStorage.setItem("cart", JSON.stringify(addToLocalstorage));
-      totalCounter();
     }
 
-    function handleLikeProducts(allLike){                
-        allLike.addEventListener('click', function(e){
-            let Like = './imgs/ic-like-full.svg'
-            let unLike = './imgs/ic-like.svg'
-
-            if(e.target.src.indexOf('ic-like-full.svg') === -1){
-                e.target.src = Like
-            }else{
-                e.target.src = unLike
-            }
-        })
-
+    // 加入我的最愛
+    let likeHart = document.querySelectorAll(".like-hart");
+    for (i = 0; i < addToCart.length; i++) {
+      let allLike = likeHart[i];
+      handleLikeProducts(allLike);
     }
+    // totalCounter();
+  })
+  .catch((err) => {
+    console.log(error);
+  });
 
+function addItemToCart(getDataId, productDataObj) {
+  let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
+  let addToLocalstorage = {};
+
+  if (
+    cartLocalstorageData &&
+    Object.keys(cartLocalstorageData).length != 0 &&
+    cartLocalstorageData[getDataId]
+  ) {
+    alert("購物車商品已為您新增數量。");
+    cartLocalstorageData[getDataId].qty += 1;
+    addToLocalstorage = { ...cartLocalstorageData };
+  } else {
+    addToLocalstorage = { ...cartLocalstorageData, ...productDataObj };
+  }
+
+  localStorage.setItem("cart", JSON.stringify(addToLocalstorage));
+  totalCounter();
+}
+
+function handleLikeProducts(allLike) {
+  allLike.addEventListener("click", function (e) {
+    let Like = "./imgs/ic-like-full.svg";
+    let unLike = "./imgs/ic-like.svg";
+
+    if (e.target.src.indexOf("ic-like-full.svg") === -1) {
+      e.target.src = Like;
+    } else {
+      e.target.src = unLike;
+    }
+  });
+}
 
 // 購物車計算功能
-function totalCounter(){
-    let cartCount = document.querySelector("#cart-count");
-    let iconCount = document.querySelector("#icon-count");
-    let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
-    let cartLocalstorageKeys = Object.keys(cartLocalstorageData);
+function totalCounter() {
+  let cartCount = document.querySelector("#cart-count");
+  let iconCount = document.querySelector("#icon-count");
+  let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
+  let cartLocalstorageKeys = Object.keys(cartLocalstorageData);
 
-    if (cartLocalstorageData && cartLocalstorageKeys.length > 0) {
-      cartCount.classList.add("cart-count");
-      iconCount.classList.add("icon-count");
-      iconCount.innerHTML = cartLocalstorageKeys.length;
-    } else {
-      cartCount.classList.remove("cart-count");
-      iconCount.classList.remove("icon-count");
-      iconCount.innerHTML = "";
-    }
+  if (cartLocalstorageData && cartLocalstorageKeys.length > 0) {
+    cartCount.classList.add("cart-count");
+    iconCount.classList.add("icon-count");
+    iconCount.innerHTML = cartLocalstorageKeys.length;
+  } else {
+    cartCount.classList.remove("cart-count");
+    iconCount.classList.remove("icon-count");
+    iconCount.innerHTML = "";
+  }
 }
-totalCounter();
