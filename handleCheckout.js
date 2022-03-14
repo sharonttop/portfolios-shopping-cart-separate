@@ -1,7 +1,6 @@
 // 取出存在localstorage的資料
 let cartItem = document.querySelector(".checkout-order-bar");
 
-
 let cartLocalstorageData = JSON.parse(localStorage.getItem("cart"));
 
 const getCartProductItem = () => {
@@ -34,30 +33,28 @@ const getCartProductItem = () => {
         </div>
         `;
   }
-    cartItem.innerHTML = cartRowContents;
+  cartItem.innerHTML = cartRowContents;
 
-    totalCounter();
+  totalCounter();
 };
-
 
 getCartProductItem();
 
 // 購物車計算功能
 function totalCounter() {
-    let cartCount = document.querySelector("#cart-count");
-    let iconCount = document.querySelector("#icon-count");
+  let cartCount = document.querySelector("#cart-count");
+  let iconCount = document.querySelector("#icon-count");
 
-    if (Object.keys(cartLocalstorageData).length > 0) {
-      // console.log(Object.keys(cartLocalstorageData).length);
-      cartCount.classList.add("cart-count");
-      iconCount.classList.add("icon-count");
-      iconCount.innerHTML = Object.keys(cartLocalstorageData).length;
-    } else {
-      cartCount.classList.remove("cart-count");
-      iconCount.classList.remove("icon-count");
-      iconCount.innerHTML = "";
-    }
-
+  if (Object.keys(cartLocalstorageData).length > 0) {
+    // console.log(Object.keys(cartLocalstorageData).length);
+    cartCount.classList.add("cart-count");
+    iconCount.classList.add("icon-count");
+    iconCount.innerHTML = Object.keys(cartLocalstorageData).length;
+  } else {
+    cartCount.classList.remove("cart-count");
+    iconCount.classList.remove("icon-count");
+    iconCount.innerHTML = "";
+  }
 
   let allTotal = document.querySelector(".allTotal");
 
@@ -65,20 +62,21 @@ function totalCounter() {
   const cartProductCount = Object.keys(cartLocalstorageData);
 
   let allTotalPrice = 0;
-  for (let i = 0; i < localstorageDataValues.length;i++){
-    const total = (localstorageDataValues[i].price) * (localstorageDataValues[i].qty)
+  for (let i = 0; i < localstorageDataValues.length; i++) {
+    const total =
+      localstorageDataValues[i].price * localstorageDataValues[i].qty;
     allTotalPrice += total;
   }
 
-    let count = document.querySelector(".count");
-    count.innerHTML = cartProductCount.length + "件";
-  
-    let cartProductsTotal = document.querySelector(".p-total");
-    cartProductsTotal.innerHTML = "¥" + allTotalPrice;
-  
+  let count = document.querySelector(".count");
+  count.innerHTML = cartProductCount.length + "件";
+
+  let cartProductsTotal = document.querySelector(".p-total");
+  cartProductsTotal.innerHTML = "¥" + allTotalPrice;
+
   let deliveryFee = document.querySelector(".delivery-fee");
   deliveryFee.innerHTML = cartProductCount.length > 0 ? "¥" + 600 : "¥" + 0;
-      
+
   allTotal.innerHTML =
     "¥" + ((cartProductCount.length > 0 ? 600 : 0) + allTotalPrice);
 }
@@ -95,4 +93,4 @@ const saveClientInfo = () => {
   localStorage.setItem("address", address);
 
   location.href = "./order-confirmation-page.html";
-}
+};
