@@ -109,3 +109,4 @@ function totalCounter() {
     iconCount.innerHTML = "";
   }
 }
+totalCounter();
